@@ -407,6 +407,11 @@ void outOneBook(book book)
 
 void lookForNameBook(listBook l, string nameBook)
 {
+	int check = 0;
+	for (nodeBook* k = l.phead; k != NULL; k = k->pnext) {
+		check++;
+	}
+	int check2 = 0;
 	for (nodeBook* k = l.phead; k != NULL; k = k->pnext)
 	{
 		string name = k->data.name;
@@ -415,6 +420,13 @@ void lookForNameBook(listBook l, string nameBook)
 			outOneBook(k->data);
 			cout << endl << endl;
 		}
+		else {
+			check2++;
+		}
+	}
+
+	if (check == check2) {
+		cout << "khong co sach nay trong danh sach" << endl;
 	}
 }
 
