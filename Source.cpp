@@ -12,9 +12,7 @@ typedef struct book
 	string author;
 	string price;
 	string year;
-
 }book;
-
 
 struct nodeBook
 {
@@ -23,7 +21,6 @@ struct nodeBook
 };
 
 typedef struct nodeBook nodeBook;
-
 
 typedef struct listBook
 {
@@ -171,6 +168,7 @@ istream& operator >> (istream& is, book& a)
 
 	return is;
 }
+
 nodeBook* create(book x)
 {
 	nodeBook* p = new nodeBook;
@@ -187,11 +185,9 @@ void addTail(listBook& l, nodeBook* p)
 	}
 	else {
 		l.ptail->pnext = p;
-		
 		l.ptail = p;
 	}
 }
-
 
 void writeFile(listBook listBook, string file) {
 	ofstream fileout;
@@ -215,7 +211,8 @@ void clearFile(string infile, string outfile) {
 	}
 
 	for (int i = 0; i < lines.size(); i++) {
-		if (lines[i] == ",,,,") {
+		if (lines[i] == ",,,,") 
+		{
 			lines.erase(lines.begin() + i);
 		}
 	}
@@ -247,7 +244,6 @@ void addBook(listBook& l, book x)
 	clearFile("test.TXT" , "test.TXT");
 }
 
-
 void printBook(book book) {
 
 	cout << "Ten sach: " << book.name << endl;
@@ -275,7 +271,8 @@ void outListBook(listBook l)
 	}
 }
 
-void readABook(ifstream& filein, book& book) {
+void readABook(ifstream& filein, book& book) 
+{
 	getline(filein, book.name, ',');
 	//filein.seekg(1, 1);
 	getline(filein, book.type, ',');
@@ -286,8 +283,8 @@ void readABook(ifstream& filein, book& book) {
 	//filein.seekg(1, 1);
 	getline(filein, book.year);
 	//filein.ignore();
-
 }
+
 void loadFile(listBook& l)
 {
 
@@ -300,19 +297,20 @@ void loadFile(listBook& l)
 		nodeBook* p = create(a);
 		addTail(l, p);
 	}
+
 	filein.close();
 }
+
 void deleteBook(listBook& l, string name)
 {
 	nodeBook* h = NULL;
-	for (nodeBook* k = l.phead; k != NULL;)
+	for (nodeBook* k = l.phead; k != NULL; )
 	{
 		if (_stricmp(k->data.name.c_str(), name.c_str()) == 0 && k == l.phead)
 		{
 			l.phead = l.phead->pnext;
 			delete k;
-			k = l.phead;
-			
+			k = l.phead;	
 		}
 		else
 		{
@@ -328,6 +326,7 @@ void deleteBook(listBook& l, string name)
 					return;
 				}
 			}
+
 			h = k;
 			k = k->pnext;
 		}
@@ -338,6 +337,7 @@ void deleteBook(listBook& l, string name)
 	writeFile(l, "test.TXT");
 	clearFile("test.TXT", "test.TXT");
 }
+
 void sortName(listBook& l)
 {
 	for (nodeBook* k = l.phead; k->pnext != NULL; k = k->pnext)
@@ -476,7 +476,6 @@ void EditNameBook(listBook& l, string nameBook)
 	writeFile(l, "test.TXT");
 	clearFile("test.TXT", "test.TXT");
 }
-
 
 void writeInforBook(ofstream& fileout, book book)
 {
